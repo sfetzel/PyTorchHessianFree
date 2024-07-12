@@ -321,7 +321,7 @@ class HessianFree(torch.optim.Optimizer):
             for param in self._params_list:
                 num_param = param.numel()
                 if param.requires_grad:
-                    param.grad.data = -step_vec[pointer: pointer + num_param].view_as(param).data
+                    param.grad = -step_vec[pointer: pointer + num_param].view_as(param).data
                     pointer += num_param
 
             # Make sure all entries of the vector have been used (i.e. that `vec` and
